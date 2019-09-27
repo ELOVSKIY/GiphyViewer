@@ -5,6 +5,8 @@
     <string name="toggle_yes">Yes</string>
     <string name="toggle_no">No</string>
 
+    <string name="settings">Settings</string>
+
     <array name="languages">
         <item>English (en)</item>
         <item>Spanish (es)</item>
