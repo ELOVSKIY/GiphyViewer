@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">GiphyViewer</string>
+    <string name="language_title">Language of gif</string>
+    <string name="adult_content">Adult content</string>
+    <string name="toggle_yes">Yes</string>
+    <string name="toggle_no">No</string>
+
+    <array name="languages">
+        <item>English (en)</item>
+        <item>Spanish (es)</item>
+        <item>Portuguese (pt)</item>
+        <item>Indonesian (id)</item>
+        <item>French (fr)</item>
+        <item>Arabic (ar)</item>
+        <item>Turkish (tr)</item>
+        <item>Thai (th)</item>
+        <item>Vietnamese (vi)</item>
+        <item>German (de)</item>
+        <item>Italian (it)</item>
+        <item>Japanese (ja)</item>
+        <item>Chinese Simplified (zh-CN)</item>
+        <item>Chinese Traditional (zh-TW)</item>
+        <item>Russian (ru)</item>
+        <item>Korean (ko)</item>
+        <item>Polish (pl)</item>
+        <item>Dutch (nl)</item>
+        <item>Romanian (ro)</item>
+        <item>Hungarian (hu)</item>
+        <item>Hungarian (hu)</item>
+        <item>Czech (cs)</item>
+        <item>Hindi (hi)</item>
+        <item>Bengali (bn)</item>
+        <item>Danish (da)</item>
+        <item>Farsi (fa)</item>
+        <item>Filipino (tl)</item>
+        <item>Finnish (fi)</item>
+        <item>Hebrew (iw)</item>
+        <item>Malay (ms)</item>
+        <item>Norweigan (no)</item>
+        <item>Ukrainian (uk)</item>
+    </array>
 </resources>
