@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.helicoptera.giphyviewer.R
-import com.helicoptera.giphyviewer.ViewModels.GiphyViewModel
+import com.helicoptera.giphyviewer.ViewModel.GiphyViewModel
 
 
 class GiphyFragment : Fragment() {

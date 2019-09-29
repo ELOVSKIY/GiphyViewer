@@ -1,4 +1,4 @@
-package com.helicoptera.giphyviewer.ViewModels
+package com.helicoptera.giphyviewer.ViewModel
 
 import androidx.lifecycle.ViewModel
 

@@ -6,19 +6,23 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.helicoptera.giphyviewer.R
-import com.helicoptera.giphyviewer.ViewModels.MainViewModel
+import com.helicoptera.giphyviewer.ViewModel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
+    lateinit var viewmodel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        setSupportActionBar(toolbar)
+        viewmodel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        setSupportActionBar(toolbar)
+        setUpFragment()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -27,13 +31,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
-            R.id.action_setting ->{
+        when (item?.itemId) {
+            R.id.action_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
                 startActivity(intent)
             }
         }
         return true
+    }
+
+    private fun setUpFragment(){
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController.navigate(R.id.disconnectFragment)
     }
 
 

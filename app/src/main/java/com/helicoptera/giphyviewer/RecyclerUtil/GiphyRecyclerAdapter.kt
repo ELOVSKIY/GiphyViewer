@@ -1,6 +1,7 @@
-package com.helicoptera.giphyviewer.RecyclerItil
+package com.helicoptera.giphyviewer.RecyclerUtil
 
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class GiphyRecyclerAdapter: RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder>() {
@@ -16,7 +17,7 @@ class GiphyRecyclerAdapter: RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    inner class ViewHolder: RecyclerView.ViewHolder(){
+    inner class ViewHolder(cardView: CardView): RecyclerView.ViewHolder(cardView){
 
     }
 }

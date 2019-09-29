@@ -1,4 +1,4 @@
-package com.helicoptera.giphyviewer.ViewModels
+package com.helicoptera.giphyviewer.ViewModel
 
 import android.content.Context
 import android.net.ConnectivityManager
