@@ -34,13 +34,11 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 setUpFragment()
-                putDataIntoFragment(query)
                 return true
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
                 setUpFragment()
-                putDataIntoFragment(query)
                 return true
             }
         })
@@ -57,14 +55,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun putDataIntoFragment(query: String?){
-        val id = Navigation.findNavController(this, R.id.nav_host_fragment)
-            .currentDestination!!.id
-        var fragment = supportFragmentManager.findFragmentById(id)
-        if (fragment is GiphyFragment){
-            fragment.onChangeQuery(query)
-        }
-    }
 
     private fun setUpFragment(){
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)

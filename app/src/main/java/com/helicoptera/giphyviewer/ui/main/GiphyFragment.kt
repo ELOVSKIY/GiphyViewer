@@ -2,12 +2,16 @@ package com.helicoptera.giphyviewer.ui.main
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.helicoptera.giphyviewer.R
+import com.helicoptera.giphyviewer.RecyclerUtil.GiphyRecyclerAdapter
 import com.helicoptera.giphyviewer.viewmodel.GiphyViewModel
 
 
@@ -23,22 +27,51 @@ class GiphyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.giphy_fragment, container, false)
-    }
+        val recyclerView =
+            inflater.inflate(R.layout.giphy_fragment, container, false) as RecyclerView
+        val recyclerAdapter = GiphyRecyclerAdapter(null)
+        val layoutManager = LinearLayoutManager(context)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = recyclerAdapter
+
         viewModel = ViewModelProviders.of(this).get(GiphyViewModel::class.java)
 
         viewModel.liveResponse.observe(this, Observer {
-
+            recyclerAdapter.gifInfoList = it
+            recyclerAdapter.notifyDataSetChanged()
         })
+        return recyclerView
     }
 
-    fun onChangeQuery(query: String?){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val searchView = menu?.findItem(R.id.action_search)?.actionView
+        if (searchView is SearchView) {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    onChangeQuery(query)
+                    return true
+                }
+                override fun onQueryTextChange(query: String?): Boolean {
+                    onChangeQuery(query)
+                    return true
+                }
+            })
+        }
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
+    fun onChangeQuery(query: String?) {
         var modQuery = query ?: "popular"
         modQuery = if (modQuery == "") "popular" else modQuery
         viewModel.onQueryChange(modQuery)
     }
+
 
 }

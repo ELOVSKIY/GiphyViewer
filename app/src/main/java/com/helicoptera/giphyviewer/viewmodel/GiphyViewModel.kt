@@ -19,6 +19,7 @@ class GiphyViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<GiphyResponse>, t: Throwable) {
+                throw t
             }
         })
     }

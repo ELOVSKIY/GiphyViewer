@@ -10,8 +10,8 @@ import com.helicoptera.mainview.NetWorking.Data.GiphyResponse
 import com.squareup.picasso.Picasso
 import pl.droidsonroids.gif.GifImageView
 
-class GiphyRecyclerAdapter(gifResponse: GiphyResponse): RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder>() {
-    private val gifInfoList: GiphyResponse = gifResponse
+class GiphyRecyclerAdapter(gifInfo: GiphyResponse?): RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder>() {
+    var gifInfoList: GiphyResponse? = gifInfo
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val cv = LayoutInflater.from(viewGroup.context).inflate(
@@ -21,15 +21,15 @@ class GiphyRecyclerAdapter(gifResponse: GiphyResponse): RecyclerView.Adapter<Gip
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(
-           gifInfoList.data[position])
+           gifInfoList!!.data[position])
     }
 
     override fun getItemCount(): Int {
-        return gifInfoList.data.size
+        return gifInfoList?.data?.size ?: 0
     }
 
     inner class ViewHolder constructor(private val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
-        private val gifHolder: GifImageView
+        private val gifHolder: GifImageView = cardView.findViewById(R.id.gif_image)
         fun bind(data: Data) {
             Picasso.get()
                 .load(data.images.fixedWidth.url)
@@ -39,8 +39,5 @@ class GiphyRecyclerAdapter(gifResponse: GiphyResponse): RecyclerView.Adapter<Gip
                 .into(gifHolder)
         }
 
-        init {
-            gifHolder = cardView.findViewById(R.id.gif_image)
-        }
     }
 }
