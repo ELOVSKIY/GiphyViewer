@@ -5,10 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.GiphyFragment">
-
-    <ImageView
-        android:id="@+id/imageView2"
+    <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/setting_toolbar" />
+        android:src="@drawable/placeholder"        />
 </FrameLayout>

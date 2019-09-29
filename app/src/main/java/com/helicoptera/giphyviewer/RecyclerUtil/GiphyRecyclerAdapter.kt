@@ -1,23 +1,46 @@
 package com.helicoptera.giphyviewer.RecyclerUtil
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.helicoptera.giphyviewer.R
+import com.helicoptera.mainview.NetWorking.Data.Data
+import com.helicoptera.mainview.NetWorking.Data.GiphyResponse
+import com.squareup.picasso.Picasso
+import pl.droidsonroids.gif.GifImageView
 
-class GiphyRecyclerAdapter: RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class GiphyRecyclerAdapter(gifResponse: GiphyResponse): RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder>() {
+    private val gifInfoList: GiphyResponse = gifResponse
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
+        val cv = LayoutInflater.from(viewGroup.context).inflate(
+            R.layout.waterfall_element, viewGroup, false) as CardView
+        return ViewHolder(cv)
+    }
+
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        viewHolder.bind(
+           gifInfoList.data[position])
     }
 
     override fun getItemCount(): Int {
-        TODO()
+        return gifInfoList.data.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    inner class ViewHolder constructor(private val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
+        private val gifHolder: GifImageView
+        fun bind(data: Data) {
+            Picasso.get()
+                .load(data.images.fixedWidth.url)
+                .noFade()
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into(gifHolder)
+        }
 
-    inner class ViewHolder(cardView: CardView): RecyclerView.ViewHolder(cardView){
-
+        init {
+            gifHolder = cardView.findViewById(R.id.gif_image)
+        }
     }
 }
