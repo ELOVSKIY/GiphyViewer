@@ -1,7 +1,8 @@
-package com.helicoptera.giphyviewer
+package com.helicoptera.giphyviewer.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.helicoptera.giphyviewer.R
 import com.helicoptera.giphyviewer.Utils.PrefUtil
 import kotlinx.android.synthetic.main.activity_setting.*
 

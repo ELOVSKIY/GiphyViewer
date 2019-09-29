@@ -1,4 +1,4 @@
-package com.helicoptera.giphyviewer
+package com.helicoptera.giphyviewer.ui.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
-import com.helicoptera.giphyviewer.ui.main.MainViewModel
+import com.helicoptera.giphyviewer.R
+import com.helicoptera.giphyviewer.ViewModels.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,4 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
+
 }
