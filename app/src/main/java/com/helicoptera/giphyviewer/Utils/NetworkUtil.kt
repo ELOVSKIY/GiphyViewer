@@ -1,4 +1,4 @@
-package com.helicoptera.giphyviewer.NetWorking
+package com.helicoptera.giphyviewer.Utils
 
 import android.content.Context
 import android.net.ConnectivityManager

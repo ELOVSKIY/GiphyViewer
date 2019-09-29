@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.helicoptera.giphyviewer.NetWorking.hasNetConnection
+import com.helicoptera.giphyviewer.Utils.hasNetConnection
 import com.helicoptera.giphyviewer.R
 import com.helicoptera.giphyviewer.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*

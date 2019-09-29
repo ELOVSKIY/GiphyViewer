@@ -7,7 +7,7 @@ class PrefUtil {
     companion object{
         private const val LANGUAGE_SETTING = "com.helicoptera.language"
 
-        fun getGifLang(context: Context): Int{
+        fun getGifLang(context: Context?): Int{
             val preference = PreferenceManager.getDefaultSharedPreferences(context)
             return preference.getInt(LANGUAGE_SETTING, 0)
         }
@@ -21,7 +21,7 @@ class PrefUtil {
 
         private const val RATING_SETTING = "com.helicoptera.rating"
 
-        fun getGifRating(context: Context): Boolean{
+        fun getGifRating(context: Context?): Boolean{
             val preference = PreferenceManager.getDefaultSharedPreferences(context)
             return preference.getBoolean(RATING_SETTING, false)
         }
