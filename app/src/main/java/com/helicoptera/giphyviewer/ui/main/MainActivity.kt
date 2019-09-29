@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.helicoptera.giphyviewer.R
 import com.helicoptera.giphyviewer.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
@@ -35,11 +33,14 @@ class MainActivity : AppCompatActivity() {
         val searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-
+                setUpFragment()
+                putDataIntoFragment(query)
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(query: String?): Boolean {
+                setUpFragment()
+                putDataIntoFragment(query)
                 return true
             }
         })
@@ -56,12 +57,12 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun putDataToFragment(query: String?){
+    private fun putDataIntoFragment(query: String?){
         val id = Navigation.findNavController(this, R.id.nav_host_fragment)
             .currentDestination!!.id
-        val fragment = supportFragmentManager.findFragmentById(id)
+        var fragment = supportFragmentManager.findFragmentById(id)
         if (fragment is GiphyFragment){
-
+            fragment.onChangeQuery(query)
         }
     }
 

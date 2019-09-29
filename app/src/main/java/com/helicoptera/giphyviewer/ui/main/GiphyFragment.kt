@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.helicoptera.giphyviewer.R
 import com.helicoptera.giphyviewer.viewmodel.GiphyViewModel
 
@@ -28,11 +29,16 @@ class GiphyFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(GiphyViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        viewModel.liveResponse.observe(this, Observer {
+
+        })
     }
 
-    private fun onChangeQuery(query: String?){
-
+    fun onChangeQuery(query: String?){
+        var modQuery = query ?: "popular"
+        modQuery = if (modQuery == "") "popular" else modQuery
+        viewModel.onQueryChange(modQuery)
     }
 
 }

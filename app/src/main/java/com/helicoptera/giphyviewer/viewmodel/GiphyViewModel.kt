@@ -9,13 +9,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GiphyViewModel : ViewModel() {
-    val info = MutableLiveData<GiphyResponse>()
+    val liveResponse = MutableLiveData<GiphyResponse>()
 
     fun onQueryChange(query: String){
         RetrofitSingleton.getInstance().api.getGifImages(query = query).enqueue(object:
             Callback<GiphyResponse> {
             override fun onResponse(call: Call<GiphyResponse>, response: Response<GiphyResponse>) {
-
+                liveResponse.value = response.body()
             }
 
             override fun onFailure(call: Call<GiphyResponse>, t: Throwable) {
