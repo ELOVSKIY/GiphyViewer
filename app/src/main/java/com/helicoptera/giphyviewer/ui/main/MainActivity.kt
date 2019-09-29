@@ -42,7 +42,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpFragment(){
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        navController.navigate(R.id.disconnectFragment)
+        if (viewmodel.hasNetConnection(this)){
+            navController.navigate(R.id.giphyFragment)
+        }else{
+            navController.navigate(R.id.disconnectFragment)
+        }
+
     }
 
 

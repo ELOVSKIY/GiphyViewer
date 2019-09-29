@@ -18,7 +18,7 @@ class DisconnectFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.giphy_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_disconect, container, false)
     }
 
 
