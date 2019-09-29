@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.helicoptera.giphyviewer.R
 import com.helicoptera.giphyviewer.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
@@ -20,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         viewmodel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setSupportActionBar(toolbar)
-
     }
 
     override fun onResume() {
@@ -30,6 +32,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_toolbar_menu, menu)
+        val searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
         return true
     }
 
@@ -43,6 +56,15 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    private fun putDataToFragment(query: String?){
+        val id = Navigation.findNavController(this, R.id.nav_host_fragment)
+            .currentDestination!!.id
+        val fragment = supportFragmentManager.findFragmentById(id)
+        if (fragment is GiphyFragment){
+
+        }
+    }
+
     private fun setUpFragment(){
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         if (viewmodel.hasNetConnection(this)){
@@ -52,6 +74,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
 }

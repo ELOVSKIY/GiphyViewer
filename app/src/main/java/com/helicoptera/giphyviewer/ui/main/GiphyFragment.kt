@@ -31,4 +31,8 @@ class GiphyFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
+    private fun onChangeQuery(query: String?){
+
+    }
+
 }

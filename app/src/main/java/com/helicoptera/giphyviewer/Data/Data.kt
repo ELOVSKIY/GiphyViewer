@@ -17,12 +17,7 @@ data class Data(
     @SerializedName("embed_url")
     val embedUrl: String,
 
-    val id: String,
-
     val images: Images,
-
-    @SerializedName("import_datetime")
-    val importDatetime: String,
 
     @SerializedName("is_sticker")
     val isSticker: Int,
@@ -30,8 +25,6 @@ data class Data(
     val rating: String,
 
     val slug: String,
-
-    val source: String,
 
     @SerializedName("source_post_url")
     val sourcePostUrl: String,
@@ -41,12 +34,5 @@ data class Data(
 
     val title: String,
 
-    @SerializedName("trending_datetime")
-    val trendingDatetime: String,
-
-    val type: String,
-
-    val url: String,
-
-    val username: String
+    val url: String
 )
