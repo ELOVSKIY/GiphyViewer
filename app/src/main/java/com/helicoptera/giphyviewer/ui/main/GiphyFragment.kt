@@ -44,6 +44,11 @@ class GiphyFragment : Fragment() {
         return recyclerView
     }
 
+    override fun onResume() {
+        onChangeQuery("")
+        super.onResume()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState)
@@ -70,7 +75,7 @@ class GiphyFragment : Fragment() {
     fun onChangeQuery(query: String?) {
         var modQuery = query ?: "popular"
         modQuery = if (modQuery == "") "popular" else modQuery
-        viewModel.onQueryChange(modQuery)
+        viewModel.onQueryChange(modQuery, context)
     }
 
 

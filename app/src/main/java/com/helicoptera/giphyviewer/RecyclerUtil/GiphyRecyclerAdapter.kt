@@ -37,6 +37,7 @@ class GiphyRecyclerAdapter(gifInfo: GiphyResponse?): RecyclerView.Adapter<GiphyR
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(gifHolder)
+            gifHolder.animate()
         }
 
     }

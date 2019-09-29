@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.helicoptera.giphyviewer.NetWorking.hasNetConnection
 import com.helicoptera.giphyviewer.R
 import com.helicoptera.giphyviewer.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
@@ -31,17 +32,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_toolbar_menu, menu)
         val searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                setUpFragment()
-                return true
-            }
-
-            override fun onQueryTextChange(query: String?): Boolean {
-                setUpFragment()
-                return true
-            }
-        })
+        searchView.setOnCloseListener {
+            setUpFragment()
+            true
+        }
         return true
     }
 
@@ -58,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpFragment(){
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        if (viewmodel.hasNetConnection(this)){
+        if (hasNetConnection(this)){
             navController.navigate(R.id.giphyFragment)
         }else{
             navController.navigate(R.id.disconnectFragment)
