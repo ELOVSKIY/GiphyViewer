@@ -8,7 +8,7 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.helicoptera.giphyviewer.R
-import com.helicoptera.giphyviewer.ViewModel.MainViewModel
+import com.helicoptera.giphyviewer.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,10 +19,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         viewmodel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-
         setSupportActionBar(toolbar)
-        setUpFragment()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setUpFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
