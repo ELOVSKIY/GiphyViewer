@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.helicoptera.giphyviewer.R
 import com.helicoptera.mainview.NetWorking.Data.Data
 import com.helicoptera.mainview.NetWorking.Data.GiphyResponse
-import com.squareup.picasso.Picasso
 import pl.droidsonroids.gif.GifImageView
 
 class GiphyRecyclerAdapter(gifInfo: GiphyResponse?): RecyclerView.Adapter<GiphyRecyclerAdapter.ViewHolder>() {
@@ -31,11 +31,9 @@ class GiphyRecyclerAdapter(gifInfo: GiphyResponse?): RecyclerView.Adapter<GiphyR
     inner class ViewHolder constructor(private val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
         private val gifHolder: GifImageView = cardView.findViewById(R.id.gif_image)
         fun bind(data: Data) {
-            Picasso.get()
+            Glide.with(cardView.context)
+                .asGif()
                 .load(data.images.fixedWidth.url)
-                .noFade()
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder)
                 .into(gifHolder)
             gifHolder.animate()
         }
